@@ -23,7 +23,7 @@ Edit HTML5 online, with highlight code and filesystem to save your work
 
 = A question that someone might have =
 If you want to contact me for assistance can do so by sending an email to: ulmdesign@mediamaster.eu - subject: TryItYourSelfHTML5
-Complete Support visit this page http://ulmdesign.mediamaster.eu/contatti
+Complete Support visit this page http://ulmdesign.mediamaster.eu/ulmdesign/contatti
 
 == Upgrade Notice ==
 http://ulmdevice.altervista.org/TryItYourSelfHTML5/
