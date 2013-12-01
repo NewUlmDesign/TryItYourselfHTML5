@@ -16,7 +16,7 @@ Edit HTML5 online, with highlight code and filesystem to save your work
 == Installation ==
 
 1. Upload folder in your web server
-2. Insert in your address address bar: http://yourdomain/TryItYourSelfHTML5/ and start to design online your web application
+2. Insert in your address bar: http://yourdomain/TryItYourSelfHTML5/ and start to design online your web application
 
 
 == Frequently asked questions ==
