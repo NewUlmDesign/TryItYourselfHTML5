@@ -1,0 +1,177 @@
+/*
+
+=== TryItYourSelf HTML5 Editor  ===
+Contributors: ulmdesign - Francesco De Stefano
+Demo link: http://ulmdevice.altervista.org/TryItYourSelfHTML5/
+Tags: html5 editor online, API HTML5 filesystem, highlight Code HTML, CSS, JavaScript
+
+Release: 1.0
+License: GPLv2 or later
+License URI: http://www.gnu.org/licenses/gpl-2.0.html
+
+
+== Description ==
+
+Edit HTML5 online, with highlight code and filesystem to save your work
+
+
+== Installation ==
+
+1. Upload folder in your web server
+2. Insert in your address address bar: http://yourdomain/TryItYourSelfHTML5/ and start to design online your web application
+
+
+== Frequently asked questions ==
+
+= A question that someone might have =
+If you want to contact me for assistance can do so by sending an email to: ulmdesign@mediamaster.eu - subject: TryItYourSelfHTML5
+Complete Support visit this page http://ulmdesign.mediamaster.eu/contatti
+
+== Upgrade Notice ==
+http://ulmdevice.altervista.org/TryItYourSelfHTML5/
+
+
+*/
+
+body {  
+  background: url("../img/bkg.jpg") no-repeat top center;
+padding: 10px;
+  
+}
+
+.CodeMirror {border-top: 1px solid black; border-bottom: 1px solid black;}
+      .CodeMirror-focused .cm-matchhighlight {
+        background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAIAAAACCAYAAABytg0kAAAAFklEQVQI12NgYGBgkKzc8x9CMDAwAAAmhwSbidEoSQAAAABJRU5ErkJggg==);
+        background-position: bottom;
+        background-repeat: repeat-x;
+      }
+ul {list-style:none}
+.title {text-transform:uppercase; color: purple}
+h3 {font-family: 'Allerta Stencil', sans-serif;}
+h4 {font-family: 'Allerta Stencil', sans-serif;}
+textarea {border: 1px solid #d3d3d3; width: 100%; -moz-box-shadow: inset 0 0 10px 1px #d3d3d3;
+-webkit-box-shadow: inset 0 0 10px 1px #d3d3d3;
+  box-shadow: inset 0 0 10px 1px #d3d3d3; padding: 2px; height:300px;}
+
+textarea:focus {-moz-box-shadow: inset 0 0 10px 1px grey;
+-webkit-box-shadow: inset 0 0 10px 1px grey;
+  box-shadow: inset 0 0 10px 1px grey;}
+
+#idoutput {border: 1px solid #d3d3d3; -moz-box-shadow: inset 0 0 10px 1px #d3d3d3;
+-webkit-box-shadow: inset 0 0 10px 1px #d3d3d3;
+  box-shadow: inset 0 0 10px 1px #d3d3d3; width: 100%; margin-top:20px; overflow:auto;}
+
+button {margin-top:10px;}
+
+.btn {
+	-moz-box-shadow:inset 0px 1px 0px 0px #dcecfb;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #dcecfb;
+	box-shadow:inset 0px 1px 0px 0px #dcecfb;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #bddbfa), color-stop(1, #80b5ea) );
+	background:-moz-linear-gradient( center top, #bddbfa 5%, #80b5ea 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#bddbfa', endColorstr='#80b5ea');
+	background-color:#bddbfa;
+	-webkit-border-top-left-radius:0px;
+	-moz-border-radius-topleft:0px;
+	border-top-left-radius:0px;
+	-webkit-border-top-right-radius:0px;
+	-moz-border-radius-topright:0px;
+	border-top-right-radius:0px;
+	-webkit-border-bottom-right-radius:0px;
+	-moz-border-radius-bottomright:0px;
+	border-bottom-right-radius:0px;
+	-webkit-border-bottom-left-radius:0px;
+	-moz-border-radius-bottomleft:0px;
+	border-bottom-left-radius:0px;
+	text-indent:0;
+	border:1px solid #84bbf3;
+	display:inline-block;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	font-style:normal;
+	height:40px;
+	line-height:40px;
+	width:160px;
+	text-decoration:none;
+	text-align:center;
+	text-shadow:1px 1px 0px #528ecc;
+}
+.btn:hover {
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #80b5ea), color-stop(1, #bddbfa) );
+	background:-moz-linear-gradient( center top, #80b5ea 5%, #bddbfa 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#80b5ea', endColorstr='#bddbfa');
+	background-color:#80b5ea;
+}.btn:active {
+	position:relative;
+	top:1px;
+}
+
+input#inputSaveAs {
+  margin-top: 5px;
+  border: 1px solid #d3d3d3;
+  padding:8px;
+  moz-box-shadow: inset 0 0 10px 1px #d3d3d3;
+-webkit-box-shadow: inset 0 0 10px 1px #d3d3d3;
+  box-shadow: inset 0 0 10px 1px #d3d3d3;  
+}
+input#inputSaveAs:focus {moz-box-shadow: inset 0 0 10px 1px grey;
+-webkit-box-shadow: inset 0 0 10px 1px grey;
+  box-shadow: inset 0 0 10px 1px grey;}
+a {color: #000;}
+footer {bottom: 0; right:0; width:100%;  background-color:#000; color: #fff; font-size:12px; padding:0;}
+footer div {padding:5px; margin-top:10px;}
+#html5badge{margin-top: 20px; float:right;}
+
+/* share buttons area */
+.stpulldown-gradient
+{
+background: #E1E1E1;
+background: -moz-linear-gradient(top, #E1E1E1 0%, #A7A7A7 100%); /* firefox */
+background: -webkit-gradient(linear, left top, left bottom, color-stop(0%,#E1E1E1), color-stop(100%,#A7A7A7)); /* webkit */
+filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#E1E1E1', endColorstr='#A7A7A7',GradientType=0 ); /* ie */
+background: -o-linear-gradient(top, #E1E1E1 0%,#A7A7A7 100%); /* opera */
+color: #636363;
+}
+#stpulldown .stpulldown-logo
+{
+height: 50px;
+width: 300px;
+margin-left: 20px;
+margin-top: 2px;
+background:url("http://ulmdesign.mediamaster.eu/ulmdesign/img/newulm.png") no-repeat;
+}
+.fright {float:right; margin-top:10px;}
+input[type="file"] {-moz-box-shadow:inset 0px 1px 0px 0px #dcecfb;
+	-webkit-box-shadow:inset 0px 1px 0px 0px #dcecfb;
+	box-shadow:inset 0px 1px 0px 0px #dcecfb;
+	background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #bddbfa), color-stop(1, #80b5ea) );
+	background:-moz-linear-gradient( center top, #bddbfa 5%, #80b5ea 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient(startColorstr='#bddbfa', endColorstr='#80b5ea');
+	background-color:#bddbfa;
+	-webkit-border-top-left-radius:0px;
+	-moz-border-radius-topleft:0px;
+	border-top-left-radius:0px;
+	-webkit-border-top-right-radius:0px;
+	-moz-border-radius-topright:0px;
+	border-top-right-radius:0px;
+	-webkit-border-bottom-right-radius:0px;
+	-moz-border-radius-bottomright:0px;
+	border-bottom-right-radius:0px;
+	-webkit-border-bottom-left-radius:0px;
+	-moz-border-radius-bottomleft:0px;
+	border-bottom-left-radius:0px;
+	text-indent:0;
+	border:1px solid #84bbf3;
+	display:inline-block;
+	color:#ffffff;
+	font-family:Arial;
+	font-size:15px;
+	font-weight:bold;
+	font-style:normal;
+    padding:5px;
+}
+
+.show {display:block;}
+.hide {display:none;}
