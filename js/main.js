@@ -51,13 +51,28 @@ function OnInput () {
 var input = document.getElementById('idinput').value;
 var output = document.getElementById('idoutput');
  output.innerHTML = input;
-  if(typeof(Storage)!=="undefined"){
-  localStorage.input = input;
-  } else {
-    alert('Il LocalStorage nel tuo browser non è supportato');
-  }
+  function saveHtml() {
+	input.blur(function() {
+		localStorage.setItem('htmlData', this.value);
+	});
+		if (localStorage.getItem('htmlData')) {
+		inputData.value = localStorage.getItem('htmlData'); 
+	}
+	}
 }
-
+function getAllElementsWithAttribute(attribute) {
+  var matchingElements = [];
+  var allElements = document.getElementsByTagName('*');
+  for (var i = 0; i < allElements.length; i++)
+  {
+    if (allElements[i].getAttribute(attribute))
+    {
+      // Element exists with attribute. Add to array.
+      matchingElements.push(allElements[i]);
+    }
+  }
+  return matchingElements;
+}
 function hide() {
   target.setAttribute("class","hide");  
 }
@@ -68,7 +83,7 @@ function display() {
 
 function saveTextAsFile()
 {
-	var textToWrite = document.getElementById("idinput").value;
+	var textToWrite = document.getElementById('idinput');
 	var textFileAsBlob = new Blob([textToWrite], {type:'text/plain'});
 	var fileNameToSaveAs = document.getElementById("inputSaveAs").value;
 
@@ -116,15 +131,28 @@ CodeMirror.fromTextArea(submit, {
     matchBrackets: true,
     autoCloseTags: true,
     highlightSelectionMatches: {showToken: /\w/},
-   readOnly: false
-  });    
+   readOnly: false,
+   OnBlur: function(){save()}
+  }); 
+   var inputData = submit;
+    inputData.blur(function() {
+		localStorage.setItem('htmlData', this.value);
+	});
+		if (localStorage.getItem('htmlData')) {
+		inputData.value = localStorage.getItem('htmlData'); 
+	}
    highlight.style.display = 'none';  
             
 }
 
 function riedita(){
-  location.reload();
-  
+    var alertuser = confirm("Attention! If you active highlight code and go back to normal mode you lose the changes");
+        if (alertuser==false) {
+            null
+        }
+            else {
+               location.reload();
+              } 
 }
 
 function anno() {
@@ -132,6 +160,7 @@ function anno() {
   var write = document.getElementById('anno');
   write.innerHTML = year.getFullYear();
 }
+
 window.onload = anno();
 showist.addEventListener('click', display, true);
 hideist.addEventListener('click', hide, true);
