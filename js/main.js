@@ -43,36 +43,35 @@ $(document).ready(function() {
 var showist = document.getElementById('mostra');
 var hideist = document.getElementById('nascondi');
 var apriFile = document.getElementById('apriFile');
-var highlight = document.getElementById('highlight');
 var submit = document.getElementById('idinput');
 var btn = document.getElementById('btn');
-var newdoc = document.getElementById('nuovo');
-function OnInput () {
-var input = document.getElementById('idinput').value;
-var output = document.getElementById('idoutput');
- output.innerHTML = input;
-  function saveHtml() {
-	input.blur(function() {
-		localStorage.setItem('htmlData', this.value);
-	});
-		if (localStorage.getItem('htmlData')) {
-		inputData.value = localStorage.getItem('htmlData'); 
-	}
-	}
-}
-function getAllElementsWithAttribute(attribute) {
-  var matchingElements = [];
-  var allElements = document.getElementsByTagName('*');
-  for (var i = 0; i < allElements.length; i++)
-  {
-    if (allElements[i].getAttribute(attribute))
-    {
-      // Element exists with attribute. Add to array.
-      matchingElements.push(allElements[i]);
-    }
+var anteprima = document.getElementById('preview');
+var editor = CodeMirror.fromTextArea(submit, {
+    mode: "text/html",
+    matchhighlight: true,
+   	lineNumbers: true,
+    matchBrackets: true,
+    autoCloseTags: true,
+    highlightSelectionMatches: {showToken: /\w/},
+   	readOnly: false
+  });
+  
+  function saveinputHtml(inputData) {
+  	$(inputData).blur(function() {
+			localStorage.setItem('htmlData', this.value);
+		});
+			if (localStorage.getItem('htmlData')) {
+			$(inputData).value = localStorage.getItem('htmlData'); 
+		}
+		return inputData;
   }
-  return matchingElements;
-}
+ function OnInput () {
+	var input = document.getElementById('idinput').value;
+	input = editor.getValue();
+	var output = document.getElementById('idoutput');
+	 output.innerHTML = input;
+	 saveinputHtml(input);
+} 
 function hide() {
   target.setAttribute("class","hide");  
 }
@@ -81,12 +80,10 @@ function display() {
   target.setAttribute("class","show");  
 }
 
-function saveTextAsFile()
-{
-	var textToWrite = document.getElementById('idinput');
-	var textFileAsBlob = new Blob([textToWrite], {type:'text/plain'});
+function saveTextAsFile() {
+	var textToWrite = document.getElementById('idoutput').innerHTML;
+	var textFileAsBlob = new Blob([textToWrite], {type:'application/xhtml+xml; charset=utf-8'});
 	var fileNameToSaveAs = document.getElementById("inputSaveAs").value;
-
 	var downloadLink = document.createElement("a");
 	downloadLink.download = fileNameToSaveAs;
 	downloadLink.innerHTML = "Download File";
@@ -104,10 +101,17 @@ function saveTextAsFile()
 	}
 
 	downloadLink.click();
+	function saveHtml() {
+	    textToWrite.blur(function() {
+			localStorage.setItem('htmlData', this.value);
+		});
+			if (localStorage.getItem('htmlData')) {
+			textToWrite.value = localStorage.getItem('htmlData'); 
+		}
+	}
 }
 
-function destroyClickedElement(event)
-{
+function destroyClickedElement(event) {
 	document.body.removeChild(event.target);
 }
 
@@ -124,36 +128,26 @@ function loadFileAsText()
 	fileReader.readAsText(fileToLoad, "UTF-8");
 }
 function code() {
-CodeMirror.fromTextArea(submit, {
-    mode: "text/html",
-    matchhighlight: true,
-   lineNumbers: true,
-    matchBrackets: true,
-    autoCloseTags: true,
-    highlightSelectionMatches: {showToken: /\w/},
-   readOnly: false,
-   OnBlur: function(){save()}
-  }); 
-   var inputData = submit;
-    inputData.blur(function() {
-		localStorage.setItem('htmlData', this.value);
-	});
-		if (localStorage.getItem('htmlData')) {
-		inputData.value = localStorage.getItem('htmlData'); 
-	}
-   highlight.style.display = 'none';  
-            
+  editor.on();
+  textToWrite = editor.getValue();
+  var edithtml = document.getElementsByTagName('textarea')[1];
+  edithtml = editor.getValue();
+  saveinputHtml(edithtml);           
 }
 
-function riedita(){
+/*
+ * 
+ function riedita(){
     var alertuser = confirm("Attention! If you active highlight code and go back to normal mode you lose the changes");
         if (alertuser==false) {
             null
         }
             else {
                location.reload();
-              } 
+              }
+              localStorage.clear(); 
 }
+*/
 
 function anno() {
   var year = new Date();
@@ -166,7 +160,5 @@ showist.addEventListener('click', display, true);
 hideist.addEventListener('click', hide, true);
 btn.addEventListener('click', saveTextAsFile, true);
 apriFile.addEventListener('click', loadFileAsText, true);
-//btn.addEventListener('click', code, true);
-newdoc.addEventListener('click', riedita, true);
-highlight.addEventListener('click', code, true);
-submit.addEventListener("keyup", OnInput, true);
+anteprima.addEventListener("click", OnInput, true);
+anteprima.addEventListener("click", code, true);
