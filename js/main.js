@@ -120,8 +120,7 @@ function loadFileAsText()
 	var fileToLoad = document.getElementById("openFile").files[0];
 
 	var fileReader = new FileReader();
-	fileReader.onload = function(fileLoadedEvent) 
-	{
+	fileReader.onload = function(fileLoadedEvent) {
 		var textFromFileLoaded = fileLoadedEvent.target.result;
 		document.getElementById("idinput").value = textFromFileLoaded;
 	};
@@ -135,19 +134,10 @@ function code() {
   saveinputHtml(edithtml);           
 }
 
-/*
- * 
  function riedita(){
-    var alertuser = confirm("Attention! If you active highlight code and go back to normal mode you lose the changes");
-        if (alertuser==false) {
-            null
-        }
-            else {
-               location.reload();
-              }
-              localStorage.clear(); 
+   	location.reload();
+    localStorage.clear(); 
 }
-*/
 
 function anno() {
   var year = new Date();
@@ -160,5 +150,6 @@ showist.addEventListener('click', display, true);
 hideist.addEventListener('click', hide, true);
 btn.addEventListener('click', saveTextAsFile, true);
 apriFile.addEventListener('click', loadFileAsText, true);
+apriFile.addEventListener('click', riedita, true);
 anteprima.addEventListener("click", OnInput, true);
 anteprima.addEventListener("click", code, true);
